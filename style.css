@@ -300,10 +300,6 @@ sections global
 }
 
 
-.section-property__about {
-  margin: var(--margine);
-}
-
 .section_property h2 {
   margin: var(--margine);
 }
@@ -406,20 +402,23 @@ sections about
 =============== 
 */
 
-/* about background */ 
 
 .section-about {
   position: relative;
   padding: 1rem;
 }
 
-.section-about__container__backround {
+/* about background */ 
+.section-about__container__backround  {
+  height: 90px;
+  overflow: hidden;
+  z-index: 0;
+  -webkit-mask-image: linear-gradient(to bottom,black 10%,transparent 95%);
   position: absolute;
   z-index: -1;
   inset: 0;
   height: 100vh;
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-  }
+}
 
 canvas {
   width: 100%;
@@ -428,36 +427,31 @@ canvas {
 /* about background */
 
 .section-property__about {
-  display: flex;
+  display: grid; 
+  grid-auto-flow: row dense; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: auto;
+  gap: 0px 0px; 
+  align-items: center; 
+  justify-items: center;
+
+  justify-content: space-evenly;
+  align-content: space-evenly;
 }
 
 .section-property__about__text {
-  padding: 2rem;
+  padding: var(--padding);
+  grid-area: 1 / 1 / 2 / 2; 
 }
-.section-property__team__text {
-  padding: 2rem;
-}
-
 
 .section-property__about__img {
-  /* background-size: contain; */
-  /* background-image: url(img/painting_computer.png);  */
-  /* background-repeat: no-repeat; */
-  /* background-position: center center; */
-  /* margin: auto; */
-  max-height: 20rem;
+  padding: var(--padding);
+  grid-area: 1 / 2 / 2 / 3; 
 }
 
-.section-property__team__img {
-  /* background-size: contain;
-  background-image: url(img/team.png); 
-  background-repeat: no-repeat;
-  background-position: center center;
-  margin: auto; */
-  max-height: 29rem;
+.section-property__about__img img{
+  width: 18rem;
 }
-
-
 
 .section-center {
   width: 90vw;
@@ -480,6 +474,8 @@ sections projects
 
 .two {
   background-color: var(--clr-white);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
 } 
 
 /*
@@ -489,24 +485,39 @@ sections projects images popup
 */
 
 .section-projects__pictures {
-  display: grid;
+  display: grid; 
   grid-auto-flow: row dense; 
-  grid-template-columns: 0.9fr 1fr; 
-  grid-template-rows: 1fr 1fr; 
-  
-  /* height: 30rem; */
-  /* place-items: center; */
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  grid-template-rows: auto;
+  gap: 0px 0px; 
+  align-items: center; 
+  justify-items: center;
+
+  justify-content: space-evenly;
+  align-content: space-evenly;
+
+  grid-template-areas: 
+"projects__pictures__GD__one projects__pictures__GD__two projects__pictures__GD__three projects__pictures__GD__four"; 
 }
 
-.section-projects__pictures__GD {
+.gd__one { grid-area: projects__pictures__GD__one; }
+.gd__two { grid-area: projects__pictures__GD__two; }
+.gd__three { grid-area: projects__pictures__GD__three; }
+.gd__four { grid-area: projects__pictures__GD__four; }
+
+
+.section-projects__pictures__graphic {
   --transform-speed: 250ms;
   position: relative;
   max-width: 20rem;
   margin-inline: auto;
   margin: .5rem;
+  padding: var(--padding);
 }
 
-.section-projects__pictures__GD__container {
+
+
+.section-projects__pictures__gd__container {
  display: grid;
  align-items: end;
  border-radius: 0 0 100vw 100vw;
@@ -515,18 +526,18 @@ sections projects images popup
  transition: transform var(--transform-speed) ease-in-out;
 }
 
-.section-projects__pictures__GD__container:hover {
+.section-projects__pictures__gd__container:hover {
 transform: scale(1.1);
 }
 
 
-.section-projects__pictures__GD__circle {
+.section-projects__pictures__gd__circle {
   position: absolute;
   width: 100%;
   border-radius: 50%;
 }
 
-.section-projects__pictures__GD__img {
+.section-projects__pictures__gd__img {
   position: relative;
   bottom: 3rem;
   z-index: 2;
