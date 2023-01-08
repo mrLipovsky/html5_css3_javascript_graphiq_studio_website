@@ -54,8 +54,8 @@ window.onmousemove = e => {
           y = e.clientY - trailer.offsetHeight / 1;
 
     const keyframe = {
-        transform: 'translate(${x}px, ${y}px)'
-    }
+        transform: `translate(${x}px, ${y}px)` 
+    };
 
     trailer.animate(keyframe, {
         duration: 800,
@@ -82,8 +82,9 @@ buttonCookie.addEventListener('click', () => {
     gsap.to('.cookie-container', {opacity:0, y:100, duration: 0.75, ease: "power1.out"})
 });
 
-//about section background 
 
+
+//about section background 
 var c = document.getElementById('canv');
 var $ = c.getContext('2d');
 
@@ -120,7 +121,29 @@ var run = function() {
 run();
 
 
-//about section background 
+//about section illustration - gallery
+
+const track = document.querySelector('.carousel__track');
+const slides = Array.from(track.children);
+const nextButton = document.querySelector('.carousel__button--right');
+const prevButton = document.querySelector('.carousel__button--left');
+
+// const dotsNav = document.querySelector('.carousel__nav');
+// const dots = Array.from(dotsNav.children);
+
+const slideWidth = slides[0].getBoundingClientRect().width;
+
+const setSlidePosition = (slide, index) => {
+  slide.style.left = slideWidth * index + 'px';
+};
+slides.forEach(setSlidePosition);
 
 
+nextButton.addEventListener('click', e => {
+  const currentSlide = track.document.querySelector('.current-slide');
+  const nextSlide = currentSlide.nextElementSibling;
+  const amountToMove = nextSlide.style.left;
+});
 
+
+// Section Moving text
